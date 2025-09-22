@@ -1,0 +1,36 @@
+version: "3.9"
+ 
+services:
+  app:
+    build: .
+    container_name: python_app
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"   # expose Flask app (change if needed)
+    networks:
+      - app_network
+ 
+  db:
+    image: postgres:14
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: srihari
+      POSTGRES_PASSWORD: srihari@54
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+ 
+volumes:
+  postgres_data:
+ 
+networks:
+  app_network:
+    driver: bridge
