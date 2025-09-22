@@ -25,5 +25,5 @@ jobs:
         run: |
           docker buildx build \
             --file ./pipeline-practice/Dockerfile \
-            --tag <your-dockerhub-username>/devops-app:latest \
+            --tag srihari574/devops-app:latest \
             --push ./pipeline-practice
